@@ -25,7 +25,17 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '前端面试刷题',
       navigationBarTextStyle: 'black'
-    }
+    },
+    navigateToMiniProgramAppIdList: [
+      'wxfb609ed38701663f',
+      'wx15e1954355f682ae',
+      'wx09302d0a200f5959',
+      'wx0ee28119b66f26c1',
+      'wx4f600619ec804238',
+      'wx005f85b408e8e316',
+      'wx8821defaed86e9ea',
+      'wx2b9a9ed6ca7c538e'
+    ]
   }
 
   componentDidMount() { }

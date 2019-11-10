@@ -1,4 +1,105 @@
-.index {
-  flex-direction: column;
-  width: 100%;
+@import '../../styles/variable.less';
+@import '../../styles/mixins.less';
+
+.index-container {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  color: #333;
+  .one-px(@border-color, top);
+  .index-card {
+    background-color: #fff;
+  }
+  .index-card:not(:last-child){
+    margin-bottom: 20px;
+  } 
+  .index-title {
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 100px;
+    .one-px()
+  }
+  .entry-content {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-size: 36px;
+    .entry-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 210px;
+      height: 210px;
+      background: linear-gradient(180deg, rgba(125, 218, 255, .2), rgba(95, 141, 236, .2));
+      border-radius: 50%;
+      position: relative;
+      &:last-child {
+        .entry {
+          background: linear-gradient(180deg, #00f8b6, #24c293);
+          &::before {
+            background: linear-gradient(180deg, rgba(0, 248, 182, .1), rgba(36, 194, 147, .1));
+          }
+          &::after {
+            background: linear-gradient(180deg, rgba(0, 248, 182, .05), rgba(36, 194, 147, .05));;
+          }
+        }
+      }
+    }
+    .entry {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 196px;
+      height: 196px;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(180deg, #7ddaff, #5f8dec);
+      border-radius: 50%;
+      z-index: 3;
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 226px;
+        height: 226px;
+        background: linear-gradient(180deg, rgba(125, 218, 255, .1), rgba(95, 141, 236, .1));
+        border-radius: 50%;
+        left: -8px;
+        top: -8px;
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        background: linear-gradient(180deg, rgba(125, 218, 255, .05), rgba(95, 141, 236, .05));
+        border-radius: 50%;
+        left: -15px;
+        top: -15px;
+      }
+    }
+  }
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    .unit {
+      width: 33.333%;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+  }
 }
