@@ -6,7 +6,7 @@ import './index.less'
 class Question extends Component {
 
   config = {
-    navigationBarTitleText: '前端面试'
+    navigationBarTitleText: '前端题库'
   }
 
   componentDidMount() { }
@@ -23,7 +23,6 @@ class Question extends Component {
     return (
       <View className='question-container'>
         {this.renderTitle()}
-
       </View>
     )
   }

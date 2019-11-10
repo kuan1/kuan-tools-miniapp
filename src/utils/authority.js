@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import store from '@/store'
 import { updateUser, clearUser } from '@/actions/user'
 
-const key = `licheng_taro_app_${process.env.NODE_ENV}`
+const key = `tools_miniapp_${process.env.NODE_ENV}`
 const maxAge = 1000 * 60 * 60 * 24 * 60
 
 export default {
