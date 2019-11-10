@@ -18,12 +18,13 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/question/index',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '前端面试刷题',
+      navigationBarTitleText: '前端面试题库',
       navigationBarTextStyle: 'black'
     },
     navigateToMiniProgramAppIdList: [

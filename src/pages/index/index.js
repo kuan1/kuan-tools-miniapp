@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 
 import './index.less'
+import { to } from '../../utils/router'
 
 class index extends Component {
 
@@ -59,15 +60,21 @@ class index extends Component {
     })
   }
 
+  toDetail(name = 'question') {
+    to({
+      name
+    })
+  }
+
   renderEntry() {
     return (
       <View className='index-card'>
         <View className='index-title'>题目练习</View>
         <View className='entry-content'>
-          <View className='entry-item'>
+          <View onClick={this.toDetail.bind(this, 'question')} className='entry-item'>
             <View className='entry'>随机练习</View>
           </View>
-          <View className='entry-item'>
+          <View onClick={this.toDetail.bind(this, 'question')} className='entry-item'>
             <View className='entry'>顺序练习</View>
           </View>
         </View>
@@ -80,11 +87,11 @@ class index extends Component {
       <View className='index-card'>
         <View className='index-title'>练习回顾</View>
         <View className='card-content'>
-          <View className='unit'>
+          <View onClick={this.toDetail.bind(this, 'question')} className='unit'>
             <Image className='icon' src={require('./images/error_icon.png')} />
             <View>错题本</View>
           </View>
-          <View className='unit'>
+          <View onClick={this.toDetail.bind(this, 'question')} className='unit'>
             <Image className='icon' src={require('./images/collect_icon.png')} />
             <View>收藏</View>
           </View>
@@ -97,7 +104,7 @@ class index extends Component {
     return (
       <View className='index-card'>
         <View className='index-title'>统计分析</View>
-        <View className='card-content'>
+        <View onClick={this.toDetail.bind(this, 'question')} className='card-content'>
           <View className='unit'>
             <Image className='icon' src={require("./images/statistics_icon.png")} />
             <View>练习统计</View>
