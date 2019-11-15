@@ -28,6 +28,10 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
@@ -35,6 +39,13 @@
 					"id": -1,
 					"name": "问题页面",
 					"pathName": "pages/question/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/index",
 					"scene": null
 				}
 			]

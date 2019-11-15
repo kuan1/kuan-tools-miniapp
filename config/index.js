@@ -1,61 +1,63 @@
 // eslint-disable-next-line import/no-commonjs
-const path = require('path')
+const path = require("path");
 
 const config = {
-  projectName: 'tools-miniapp',
-  date: '2019-11-10',
+  projectName: "tools-miniapp",
+  date: "2019-11-10",
   designWidth: 750,
   deviceRatio: {
-    '640': 2.34 / 2,
-    '750': 1,
-    '828': 1.81 / 2
+    "640": 2.34 / 2,
+    "750": 1,
+    "828": 1.81 / 2
   },
-  sourceRoot: 'src',
-  outputRoot: 'dist',
+  sourceRoot: "src",
+  outputRoot: "dist",
   alias: {
-    '@': path.resolve(__dirname, '..', 'src')
+    "@": path.resolve(__dirname, "..", "src")
   },
   plugins: {
     babel: {
       sourceMap: true,
       presets: [
-        ['env', {
-          modules: false
-        }]
+        [
+          "env",
+          {
+            modules: false
+          }
+        ]
       ],
       plugins: [
-        'transform-decorators-legacy',
-        'transform-class-properties',
-        'transform-object-rest-spread'
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "transform-object-rest-spread"
       ]
     }
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
     patterns: [
+      {
+        from: "src/wemark",
+        to: "dist/wemark"
+      }
     ],
-    options: {
-    }
+    options: {}
   },
   weapp: {
+    compile: {
+      exclude: ["src/wemark/remarkable.js"]
+    },
     module: {
       postcss: {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ["last 3 versions", "Android >= 4.1", "ios >= 8"]
           }
         },
         pxtransform: {
           enable: true,
-          config: {
-
-          }
+          config: {}
         },
         url: {
           enable: true,
@@ -66,43 +68,39 @@ const config = {
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
+            namingPattern: "module", // 转换模式，取值为 global/module
+            generateScopedName: "[name]__[local]___[hash:base64:5]"
           }
         }
       }
     }
   },
   h5: {
-    publicPath: '/',
-    staticDirectory: 'static',
+    publicPath: "/",
+    staticDirectory: "static",
     module: {
       postcss: {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ["last 3 versions", "Android >= 4.1", "ios >= 8"]
           }
         },
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
+            namingPattern: "module", // 转换模式，取值为 global/module
+            generateScopedName: "[name]__[local]___[hash:base64:5]"
           }
         }
       }
     }
   }
-}
+};
 
-module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+module.exports = function(merge) {
+  if (process.env.NODE_ENV === "development") {
+    return merge({}, config, require("./dev"));
   }
-  return merge({}, config, require('./prod'))
-}
+  return merge({}, config, require("./prod"));
+};

@@ -1,3 +1,3 @@
 export default {
-  apiUrl: 'https:www.luzhongkuan.cn'
-}
+  apiUrl: "https://www.luzhongkuan.cn"
+};
