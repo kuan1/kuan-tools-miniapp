@@ -1,6 +1,6 @@
 import * as CONSTANTS from '../constants'
 
-export function changeRequest(payload) {
+export function changeQuestion(payload) {
   return {
     type: CONSTANTS.SET_QUESTIONS,
     payload

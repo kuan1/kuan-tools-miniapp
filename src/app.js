@@ -2,9 +2,11 @@ import "@tarojs/async-await";
 import Taro, { Component } from "@tarojs/taro";
 import { Provider } from "@tarojs/redux";
 
-import Index from "./pages/index/index";
+import * as Action from '@/actions/question'
+import * as Api from '@/api/question'
+import store from "@/store";
 
-import store from "./store";
+import Index from "./pages/index/index";
 
 import "./styles/index.less";
 
@@ -35,7 +37,19 @@ class App extends Component {
     ]
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  async fetchData() {
+    const data = await Api.list()
+    const { list = [], total = 0 } = data
+    store.dispatch(Action.changeQuestion({
+      list,
+      total,
+      current: 0
+    }))
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

@@ -29,7 +29,7 @@ export default ({
       ...options,
       success(result) {
         const { iRet, success, data: res, info } = result.data
-        if (iRet !== 1 || !success) {
+        if (iRet !== 1 && !success) {
           const e = new Error(info)
           e.response = result
           e.statusCode = result.statusCode

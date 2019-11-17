@@ -1,20 +1,8 @@
-import authority from '@/utils/authority'
-import * as USER from '../constants'
+import Taro from '@tarojs/taro'
+import * as USER from '@/constants'
+import { cacheKey as key } from '@/constants/config'
 
-const defaults = {
-  openid: '',
-  nickname: '',
-  avatar: '',
-  province: '',
-  city: '',
-  phone: '',
-  token: '',
-  city: {
-    shop_level: ''
-  }
-}
-
-const INITIAL_STATE = authority.get() || defaults
+const INITIAL_STATE = Taro.getStorageSync(key) || {}
 
 export default function user(state = INITIAL_STATE, action) {
   switch (action.type) {

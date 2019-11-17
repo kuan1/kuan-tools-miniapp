@@ -1,11 +1,11 @@
 import Taro from '@tarojs/taro'
 import store from '@/store'
 import { updateUser, clearUser } from '@/actions/user'
+import { cacheKey as key } from '@/constants/config'
 
-const key = `tools_miniapp_${process.env.NODE_ENV}`
 const maxAge = 1000 * 60 * 60 * 24 * 60
 
-export default {
+const authority = {
   get() {
     try {
       const user = Taro.getStorageSync(key)
@@ -32,3 +32,5 @@ export default {
     return {}
   }
 }
+
+export default authority
