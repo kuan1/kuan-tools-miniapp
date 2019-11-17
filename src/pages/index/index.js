@@ -1,20 +1,21 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 
+import { to } from '@/utils/router'
+import { toast } from '@/utils/feedBack'
 import './index.less'
-import { to } from '../../utils/router'
 
 class index extends Component {
 
   config = {
-    navigationBarTitleText: '前端面试'
+    navigationBarTitleText: '工具助手-前端题库'
   }
 
   state = {
     otherApps: [
       {
         name: '礼成App',
-        src: require('./images/wfc.jpg'),
+        src: require('./images/licheng_app.jpg'),
         appId: 'wxfb609ed38701663f',
       },
       {
@@ -66,10 +67,14 @@ class index extends Component {
     })
   }
 
+  toast() {
+    toast('功能开发中...')
+  }
+
   renderEntry() {
     return (
       <View className='index-card'>
-        <View className='index-title'>题目练习</View>
+        <View className='index-title'>前端题库</View>
         <View className='entry-content'>
           <View onClick={this.toDetail.bind(this, 'question')} className='entry-item'>
             <View className='entry'>随机练习</View>
@@ -87,11 +92,11 @@ class index extends Component {
       <View className='index-card'>
         <View className='index-title'>练习回顾</View>
         <View className='card-content'>
-          <View onClick={this.toDetail.bind(this, 'question')} className='unit'>
-            <Image className='icon' src={require('./images/error_icon.png')} />
-            <View>错题本</View>
+          <View onClick={this.toast} className='unit'>
+            <Image className='icon' src={require("./images/statistics_icon.png")} />
+            <View>练习统计</View>
           </View>
-          <View onClick={this.toDetail.bind(this, 'question')} className='unit'>
+          <View onClick={this.toast} className='unit'>
             <Image className='icon' src={require('./images/collect_icon.png')} />
             <View>收藏</View>
           </View>
@@ -103,11 +108,11 @@ class index extends Component {
   renderStatistics() {
     return (
       <View className='index-card'>
-        <View className='index-title'>统计分析</View>
-        <View onClick={this.toDetail.bind(this, 'question')} className='card-content'>
+        <View className='index-title'>我要反馈</View>
+        <View className='card-content'>
           <View className='unit'>
-            <Image className='icon' src={require("./images/statistics_icon.png")} />
-            <View>练习统计</View>
+            <Image className='icon' src={require("./images/feedback.png")} />
+            <View>联系我</View>
           </View>
         </View>
       </View>
@@ -118,7 +123,7 @@ class index extends Component {
     const { otherApps = [] } = this.state
     return (
       <View className='index-card'>
-        <View className='index-title'>小程序推荐</View>
+        <View className='index-title'>广告</View>
         <View className='card-content'>
           {
             otherApps.map(item => (

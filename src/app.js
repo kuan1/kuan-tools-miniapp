@@ -18,11 +18,16 @@ import "./styles/index.less";
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index", "pages/question/index", "pages/test/index"],
+    pages: [
+      "pages/index/index",
+      "pages/question/index",
+      "pages/question/random",
+      "pages/test/index"
+    ],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "前端面试题库",
+      navigationBarTitleText: "工具助手",
       navigationBarTextStyle: "black"
     },
     navigateToMiniProgramAppIdList: [
