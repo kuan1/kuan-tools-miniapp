@@ -1,0 +1,36 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "问题页面",
+          "pathName": "pages/question/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "test",
+          "pathName": "pages/test/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/index",
+          "pathName": "pages/user/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

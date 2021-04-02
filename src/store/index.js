@@ -1,30 +1,20 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import rootReducer from '../reducers'
+import Vue from "vue";
+import Vuex from "vuex";
+import createLogger from "vuex/dist/logger";
 
-const composeEnhancers =
-  typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-    }) : compose
+const debug = process.env.NODE_ENV !== "production";
 
-const middlewares = [
-  thunkMiddleware
-]
+Vue.use(Vuex);
 
-if (process.env.NODE_ENV === 'development' && process.env.TARO_ENV !== 'quickapp') {
-  middlewares.push(require('redux-logger').createLogger())
-}
+const files = require.context(".", false, /\.js$/);
+const modules = {};
 
-const enhancer = composeEnhancers(
-  applyMiddleware(...middlewares),
-  // other store enhancers if any
-)
+files.keys().forEach(key => {
+  if (key === "./index.js") return;
+  modules[key.replace(/(\.\/|\.js)/g, "")] = files(key).default;
+});
 
-function configStore() {
-  const store = createStore(rootReducer, enhancer)
-  return store
-}
-
-export default configStore()
+export default new Vuex.Store({
+  modules,
+  plugins: debug ? [createLogger()] : [] // 开发环境下显示vuex的状态修改
+});

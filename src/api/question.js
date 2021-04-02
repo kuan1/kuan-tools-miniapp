@@ -8,11 +8,20 @@ export function detail(id) {
 }
 
 // 问题列表
-export function list() {
+export function list(params) {
   return request({
     url: `/api/blog/question`,
-    query: {
-      size: 1000000
+    params: {
+      page: 1,
+      size: 15,
+      ...params
     }
+  });
+}
+
+// 标签
+export function tags() {
+  return request({
+    url: "/api/blog/questionTag"
   });
 }

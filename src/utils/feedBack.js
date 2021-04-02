@@ -1,31 +1,37 @@
-import Taro from '@tarojs/taro'
+import Taro from "@tarojs/taro";
 
 // 确认
-export function confirm(title = '请确认', content = '') {
+export function confirm(title = "请确认", content = "") {
   return new Promise((resolve, reject) => {
     Taro.showModal({
       title,
       content,
       success(res) {
         if (res.confirm) {
-          resolve()
+          resolve();
         } else {
-          reject(res)
+          console.log(res);
+          reject("cancel");
         }
       }
-    })
-  })
+    });
+  });
 }
 
-export function toast(title) {
-  if (!title) return
-  Taro.showToast({
-    title,
-    icon: 'none',
-    duration: 2000
-  })
+// 轻提示
+export function toast(title, duration = 1500) {
+  if (!title) return;
+  return Promise.all([
+    Taro.showToast({
+      title,
+      icon: "none",
+      duration
+    }),
+    new Promise(resolve => setTimeout(resolve, duration))
+  ]);
 }
 
-export function toastDownload() {
-  toast('请下载礼成APP')
-}
+export const loading = {
+  show: Taro.showLoading,
+  hide: Taro.hideLoading
+};

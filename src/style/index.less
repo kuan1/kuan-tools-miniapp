@@ -1,0 +1,26 @@
+@import "./variables.less";
+@import "./mixins.less";
+
+@import "./common/index.less";
+
+view,
+text {
+  font-family: -apple-system-font, "PingFang SC", "Helvetica Neue", sans-serif,
+    "Hiragino Sans GB", "Microsoft YaHei";
+}
+
+.cover {
+  background-position: center center;
+  background-size: cover;
+}
+
+.contain {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+// 超出隐藏
+.ellipsis {
+  .ellipsis(1);
+}
