@@ -15,33 +15,35 @@
         <button class="btn" @tap="toSearch">搜索</button>
       </view>
     </view>
-    <scroll-view
-      :enhanced="true"
-      :show-scrollbar="false"
-      :scroll-with-animation="true"
-      :scroll-x="true"
-      :scroll-left="left"
-      class="search-tags"
-    >
-      <view class="search-list">
-        <view
-          class="btn btn-0"
-          :class="{ active: !payload.tag }"
-          @tap="search('')"
-        >
-          全部
+    <view class="search-tags-outer tags-mask">
+      <scroll-view
+        :enhanced="true"
+        :show-scrollbar="false"
+        :scroll-with-animation="true"
+        :scroll-x="true"
+        :scroll-left="left"
+        class="search-tags"
+      >
+        <view class="search-list">
+          <view
+            class="btn btn-0"
+            :class="{ active: !payload.tag }"
+            @tap="search('')"
+          >
+            全部
+          </view>
+          <view
+            v-for="(item, i) in tags"
+            :key="item"
+            class="btn"
+            :class="{ active: payload.tag == item, [`btn-${i + 1}`]: true }"
+            @tap="search(item, i + 1)"
+          >
+            {{ item }}
+          </view>
         </view>
-        <view
-          v-for="(item, i) in tags"
-          :key="item"
-          class="btn"
-          :class="{ active: payload.tag == item, [`btn-${i + 1}`]: true }"
-          @tap="search(item, i + 1)"
-        >
-          {{ item }}
-        </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
+    </view>
   </view>
 </template>
 
@@ -72,6 +74,7 @@ export default {
   methods: {
     clear() {
       this.text = "";
+      this.left = "";
       this.toSearch();
     },
     toSearch() {
@@ -125,6 +128,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.012);
   .avatar {
     width: 70px;
     height: 70px;
@@ -157,7 +161,7 @@ export default {
     margin-right: 1em;
   }
   .btn {
-    width: 196px;
+    width: 140px;
     height: 78px;
     box-sizing: border-box;
     background-color: #4e6ef2;
@@ -169,6 +173,25 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.search-tags-outer {
+  position: relative;
+  &.tags-mask::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
   }
 }
 

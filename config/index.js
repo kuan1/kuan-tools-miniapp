@@ -25,7 +25,14 @@ const config = {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {}
+        config: {
+          selectorBlackList: [
+            /^\.halo-loading/,
+            /^\.halo-circle/,
+            /^\.one-px/,
+            /pptx/
+          ]
+        }
       },
       url: {
         enable: true,

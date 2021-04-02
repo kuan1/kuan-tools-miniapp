@@ -1,7 +1,7 @@
 <template>
-  <view class="like-wrap">
+  <view class="like-wrap" @tap.stop="$emit('tap')">
     <image class="like-icon" :src="src" />
-    <view>喜欢</view>
+    <view>收藏</view>
   </view>
 </template>
 

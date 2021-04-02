@@ -1,5 +1,5 @@
 <template>
-  <view class="share-icon">
+  <view class="share-icon" @tap.stop="$emit('tap')">
     <image class="share-img" :src="src" />
     <view>分享</view>
     <button :data-share="share" class="share-button" open-type="share"></button>
