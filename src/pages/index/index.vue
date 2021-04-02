@@ -4,7 +4,7 @@
     <view class="list">
       <view v-for="(item, i) in list" :key="item.id" class="card">
         <view class="card-title">{{ i + 1 }}. {{ item.title }}</view>
-        <wemark :md="item.brief" class="brief" />
+        <wemark :highlight="true" :md="item.brief" class="brief" />
 
         <view class="footer">
           <view v-for="tag in item.tag" :key="tag" class="tags">
@@ -84,7 +84,7 @@ export default {
     align-items: center;
   }
   .icon-item {
-    margin-right: 20px;
+    margin-left: 25px;
   }
   .tags {
     display: flex;
