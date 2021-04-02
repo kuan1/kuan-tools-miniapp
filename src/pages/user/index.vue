@@ -22,6 +22,10 @@
       </view>
 
       <view class="actions">
+        <view class="action" @tap="toAbout">
+          <view>关于更多</view>
+          <view class="arrow-right" />
+        </view>
         <view class="action">
           <view>意见反馈</view>
           <view class="arrow-right" />
@@ -37,12 +41,16 @@
 </template>
 
 <script>
+import { to } from "@/utils/router";
 import { confirm, toast } from "@/utils/feedback";
 export default {
   methods: {
     async confirm() {
       await confirm("请确定是否清空", "清空记录后讲无法恢复");
       toast("清除成功");
+    },
+    toAbout() {
+      to("about");
     },
   },
 };
