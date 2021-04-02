@@ -8,8 +8,8 @@ export function detail(id) {
 }
 
 // 问题列表
-export function list(params) {
-  return request({
+export async function list(params) {
+  const { list = [], total = 0 } = await request({
     url: `/api/blog/question`,
     params: {
       page: 1,
@@ -17,6 +17,11 @@ export function list(params) {
       ...params
     }
   });
+  list.forEach(item => {
+    item.tag = item.tag.split(",").filter(Boolean);
+  });
+
+  return { list, total };
 }
 
 // 标签

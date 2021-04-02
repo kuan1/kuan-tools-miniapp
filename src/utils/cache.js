@@ -16,4 +16,4 @@ function createCache(key = `question-cache`) {
 
 export const tagsCache = createCache("tagsCache");
 
-export const questionCache = createCache("questionCache");
+export const likeCache = createCache("likeCache");
