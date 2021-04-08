@@ -119,7 +119,7 @@ export default {
     display: flex;
     align-items: center;
     .tag {
-      background-color: #ccc;
+      background-color: rgba(0, 0, 0, 0.12);
       color: white;
       height: 34px;
       line-height: 34px;

@@ -3,6 +3,7 @@ import { isDev } from "@/constants/config";
 import doRequest from "./do-request";
 import loading from "./loading";
 import { toast } from "../feedback";
+import { code2session } from "../login";
 
 // 错误尝试次数
 const maxCount = 2;
@@ -19,6 +20,8 @@ export default async (
   // 是否需要loading
   if (shouldLoading) loading.show();
 
+  await code2session();
+
   for (let i = 0; i < maxCount; i++) {
     try {
       const data = await doRequest(options);
@@ -34,7 +37,7 @@ export default async (
         let errMsg = info;
         // 401重新登录
         if (statusCode === 401) {
-          await loginForce();
+          // await code2session(true);
           continue;
         }
         loading.hide(true);

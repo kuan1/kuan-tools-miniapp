@@ -34,6 +34,9 @@ export default ({
       success(result) {
         const { success, data: res, info } = result.data;
         if (!success) {
+          if (result.statusCode === 401) {
+            authority.clear();
+          }
           const e = new Error(info);
           e.response = result;
           e.statusCode = result.statusCode;
