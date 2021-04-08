@@ -1,7 +1,7 @@
 <template>
   <view class="like-wrap" @tap.stop="$emit('tap')">
     <image class="like-icon" :src="src" />
-    <view>收藏</view>
+    <view class="smaller">{{ text }}</view>
   </view>
 </template>
 
@@ -11,6 +11,10 @@ export default {
     value: {
       value: false,
       type: Boolean,
+    },
+    text: {
+      type: String,
+      default: "收藏",
     },
   },
   computed: {

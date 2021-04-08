@@ -31,10 +31,6 @@
           <view class="arrow-right" />
           <button class="coverfix" open-type="contact" />
         </view>
-        <view class="action" @tap="confirm">
-          <view>清空记录</view>
-          <view class="arrow-right" />
-        </view>
       </view>
     </view>
   </view>
@@ -45,10 +41,6 @@ import { to } from "@/utils/router";
 import { confirm, toast } from "@/utils/feedback";
 export default {
   methods: {
-    async confirm() {
-      await confirm("请确定是否清空", "清空记录后讲无法恢复");
-      toast("清除成功");
-    },
     toAbout() {
       to("about");
     },

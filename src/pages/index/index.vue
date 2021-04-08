@@ -16,8 +16,8 @@
             <view class="tag">{{ tag }}</view>
           </view>
           <view class="action">
-            <like-icon class="icon-item" />
-            <share-icon :share="item.id" class="icon-item" />
+            <views-icon text="100" class="icon-item" />
+            <like-icon text="10" class="icon-item" />
           </view>
         </view>
       </view>
@@ -40,13 +40,13 @@ import { mapState } from "vuex";
 import Taro from "@tarojs/taro";
 
 import LikeIcon from "@/components/like-icon";
-import ShareIcon from "@/components/share-icon";
+import ViewsIcon from "@/components/views-icon";
 import SearchHeader from "./components/search-header";
 
 export default {
   components: {
     LikeIcon,
-    ShareIcon,
+    ViewsIcon,
     SearchHeader,
   },
   computed: {
@@ -66,11 +66,6 @@ export default {
     this.$store.dispatch("fetchMoreQuestion");
   },
   onShareAppMessage(e) {
-    if (e.from === "button") {
-      const id = e.target.dataset.share;
-      const { title } = this.list.find((item) => item.id == id) || {};
-      return { title, path: `/pages/detail/index?id=${id}` };
-    }
     return { title: "前端面试" };
   },
   methods: {
@@ -119,7 +114,7 @@ export default {
     display: flex;
     align-items: center;
     .tag {
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.2);
       color: white;
       height: 34px;
       line-height: 34px;
@@ -127,6 +122,8 @@ export default {
       border-radius: 4px;
       padding: 0 10px;
       margin-right: 10px;
+      transform-origin: left center;
+      transform: scale(0.9);
     }
   }
 

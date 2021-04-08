@@ -7,7 +7,8 @@ let preCode2session;
 
 // code换session，防止并发
 export async function doCode2session(force = false, cb = () => {}, error = {}) {
-  if (sessioned && !force) return authority.get();
+  const cache = authority.get() || {};
+  if ((sessioned || cache.nickname) && !force) return cache;
   try {
     const { code } = await taro.login();
     const user = await Api.code2session(code);
