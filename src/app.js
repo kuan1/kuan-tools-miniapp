@@ -1,5 +1,6 @@
 import Vue from "vue";
 import store from "./store/index";
+import { check } from "./utils/login";
 
 import "./app.less";
 
@@ -7,6 +8,9 @@ import "./app.less";
 
 const App = {
   store,
+  onLaunch() {
+    check();
+  },
   onShow(options) {},
   render(h) {
     // this.$slots.default 是将要会渲染的页面

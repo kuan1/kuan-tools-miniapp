@@ -13,7 +13,7 @@ export default {
       type: Boolean,
     },
     text: {
-      type: String,
+      type: [String, Number],
       default: "收藏",
     },
   },

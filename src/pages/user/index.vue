@@ -38,7 +38,8 @@
 
 <script>
 import { to } from "@/utils/router";
-import { confirm, toast } from "@/utils/feedback";
+import * as Api from "@/api/user";
+
 export default {
   methods: {
     toAbout() {

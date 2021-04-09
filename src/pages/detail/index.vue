@@ -7,15 +7,19 @@
           <view class="tag">{{ tag }}</view>
         </view>
         <view class="action">
-          <like-icon class="icon-item" />
           <share-icon :share="data.id" class="icon-item" />
+          <like-icon
+            class="icon-item"
+            :value="!!data.is_like"
+            @tap="toggleLike"
+          />
         </view>
       </view>
       <view v-if="data.brief" class="brief-wrap">
         <wemark :highlight="true" :md="data.brief" />
       </view>
 
-      <button v-if="!visible" class="answer-btn" @tap="visible = true">
+      <button v-if="!visible" class="answer-btn" @tap="showAnswer">
         显示答案
       </button>
       <view v-else class="answer">
@@ -35,6 +39,8 @@
 <script>
 import * as Api from "@/api/question";
 import router from "@/utils/router";
+import { getUserProfile } from "@/utils/login";
+import authority from "@/utils/authority";
 
 import LikeIcon from "@/components/like-icon";
 import ShareIcon from "@/components/share-icon";
@@ -46,6 +52,7 @@ export default {
   },
   data() {
     return {
+      id: "",
       data: {},
       visible: false,
     };
@@ -54,12 +61,27 @@ export default {
     this.fetchData();
   },
   methods: {
+    showAnswer() {
+      const { nickname } = authority.get() || {};
+      if (!nickname) {
+        getUserProfile(() => {
+          this.visible = true;
+        });
+      } else {
+        this.visible = true;
+      }
+    },
     async fetchData() {
       const { id } = router.query;
+      this.id = id;
       const data = await Api.detail(id);
       data.tag = data.tag.split(",").filter(Boolean);
       this.data = data;
       console.log(data);
+    },
+    async toggleLike() {
+      const is_like = await Api.toggleLike(this.id);
+      this.data.is_like = is_like;
     },
   },
 };
@@ -134,7 +156,7 @@ export default {
       display: flex;
       align-items: center;
       .tag {
-        background-color: rgba(0, 0, 0, 0.12);
+        background-color: rgba(0, 0, 0, 0.2);
         color: white;
         height: 34px;
         line-height: 34px;
@@ -142,6 +164,8 @@ export default {
         border-radius: 4px;
         padding: 0 10px;
         margin-right: 10px;
+        transform-origin: left center;
+        transform: scale(0.9);
       }
     }
   }

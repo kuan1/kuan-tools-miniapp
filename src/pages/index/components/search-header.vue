@@ -86,6 +86,7 @@ export default {
       });
     },
     search(item, index) {
+      if (this.payload.tag === item) return;
       Taro.pageScrollTo({ scrollTop: 0 });
       const target = this.rects[index] || {};
       const winWidth = getWinWidth(); // 设备宽度
