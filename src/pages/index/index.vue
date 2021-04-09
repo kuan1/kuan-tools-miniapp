@@ -1,5 +1,5 @@
 <template>
-  <view class="index-page">
+  <view class="page-container">
     <search-header />
     <question-list :list="list" />
 
@@ -42,10 +42,3 @@ export default {
   },
 };
 </script>
-
-<style lang="less">
-.index-page {
-  background-color: #f5f5f5;
-  min-height: 100vh;
-}
-</style>

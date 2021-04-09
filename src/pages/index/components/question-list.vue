@@ -1,12 +1,12 @@
 <template>
   <view class="question-list">
     <view
-      v-for="(item, i) in list"
+      v-for="item in list"
       :key="item.id"
       class="card"
       @tap="toDetail(item.id)"
     >
-      <view class="card-title">{{ i + 1 }}. {{ item.title }}</view>
+      <view class="card-title">{{ item.id }}. {{ item.title }}</view>
       <wemark :highlight="true" :md="item.brief" class="brief" />
 
       <view class="footer">

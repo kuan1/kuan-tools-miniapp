@@ -1,5 +1,5 @@
 <template>
-  <view class="user-outer">
+  <view class="user-outer page-container">
     <view class="header">
       <view class="avatar">
         <open-data type="userAvatarUrl" />
@@ -11,18 +11,18 @@
 
     <view class="user-action">
       <view class="user-card">
-        <view class="item">
+        <view class="item" @tap="toCollect">
           <view class="value">{{ statistics.collectTotal }}</view>
           <view class="label">我的收藏</view>
         </view>
-        <view class="item">
+        <view class="item" @tap="toHistory">
           <view class="value">{{ statistics.historyTotal }}</view>
           <view class="label">阅读历史</view>
         </view>
       </view>
 
       <view class="actions">
-        <view class="action" @tap="toAbout">
+        <view class="action" @tap="to('about')">
           <view>关于更多</view>
           <view class="arrow-right" />
         </view>
@@ -39,6 +39,7 @@
 <script>
 import { mapState } from "vuex";
 import { to } from "@/utils/router";
+import { toast } from "@/utils/feedback";
 
 export default {
   computed: {
@@ -50,19 +51,26 @@ export default {
     this.$store.dispatch("fetchStatistics");
   },
   methods: {
-    toAbout() {
-      to("about");
+    to,
+    toCollect() {
+      if (this.statistics.collectTotal) {
+        to("collect");
+      } else {
+        toast("你还没有收藏~");
+      }
+    },
+    toHistory() {
+      if (this.statistics.historyTotal) {
+        to("history");
+      } else {
+        toast("你还没有阅读~");
+      }
     },
   },
 };
 </script>
 
 <style lang="less">
-.user-outer {
-  background-color: #f5f5f5;
-  min-height: 100vh;
-}
-
 .header {
   height: 350px;
   position: relative;

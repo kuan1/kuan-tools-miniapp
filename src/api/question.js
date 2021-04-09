@@ -1,4 +1,4 @@
-import request from "@/utils/request";
+import request from "@/utils/request"
 
 // 问题详情
 export function detail(id) {
@@ -9,7 +9,7 @@ export function detail(id) {
     {
       shouldLoading: true
     }
-  );
+  )
 }
 
 // 问题列表
@@ -21,19 +21,19 @@ export async function list(params) {
       size: 15,
       ...params
     }
-  });
+  })
   list.forEach(item => {
-    item.tag = item.tag.split(",").filter(Boolean);
-  });
+    item.tag = item.tag.split(",").filter(Boolean)
+  })
 
-  return { list, total };
+  return { list, total }
 }
 
 // 标签
 export function tags() {
   return request({
     url: "/api/blog/questionTag"
-  });
+  })
 }
 
 // 喜欢
@@ -41,18 +41,37 @@ export function toggleLike(id) {
   return request({
     url: `/api/blog/question/${id}/like`,
     method: "put"
-  });
+  })
 }
 
-export function collectList(params = {}) {
-  return request({
+export async function collectList(params = {}) {
+  const { list = [], total = 0 } = await request({
     url: "/api/miniapp/question/collectList",
     params
-  });
+  })
+
+  list.forEach(item => {
+    item.tag = item.tag.split(",").filter(Boolean)
+  })
+
+  return { list, total }
+}
+
+export async function historyList(params = {}) {
+  const { list = [], total = 0 } = await request({
+    url: "/api/miniapp/question/historyList",
+    params
+  })
+
+  list.forEach(item => {
+    item.tag = item.tag.split(",").filter(Boolean)
+  })
+
+  return { list, total }
 }
 
 export function statistics() {
   return request({
     url: "/api/miniapp/question/statistics"
-  });
+  })
 }

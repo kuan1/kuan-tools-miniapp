@@ -4,6 +4,8 @@ export default {
     "pages/detail/index",
     "pages/about/index",
     "pages/user/index",
+    "pages/collect/index",
+    "pages/history/index",
     "pages/test/index"
   ],
   window: {
@@ -12,4 +14,4 @@ export default {
     navigationBarTitleText: "前端面试",
     navigationBarTextStyle: "black"
   }
-};
+}

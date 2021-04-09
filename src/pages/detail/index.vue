@@ -1,5 +1,5 @@
 <template>
-  <view class="detail-container">
+  <view class="detail-container page-container">
     <template v-if="data.id">
       <view class="detail-title">{{ data.title }}</view>
       <view class="subwrap">
@@ -89,8 +89,6 @@ export default {
 
 <style lang="less">
 .detail-container {
-  background-color: #f5f5f5;
-  min-height: 100vh;
   overflow: hidden;
   .detail-title {
     padding: 30px 30px 0;
