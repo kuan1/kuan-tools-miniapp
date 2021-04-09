@@ -12,11 +12,11 @@
     <view class="user-action">
       <view class="user-card">
         <view class="item">
-          <view class="value">100</view>
+          <view class="value">{{ statistics.collectTotal }}</view>
           <view class="label">我的收藏</view>
         </view>
         <view class="item">
-          <view class="value">200</view>
+          <view class="value">{{ statistics.historyTotal }}</view>
           <view class="label">阅读历史</view>
         </view>
       </view>
@@ -37,10 +37,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { to } from "@/utils/router";
-import * as Api from "@/api/user";
 
 export default {
+  computed: {
+    ...mapState({
+      statistics: (state) => state.question.statistics,
+    }),
+  },
+  mounted() {
+    this.$store.dispatch("fetchStatistics");
+  },
   methods: {
     toAbout() {
       to("about");

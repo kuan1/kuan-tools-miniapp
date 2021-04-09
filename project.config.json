@@ -6,23 +6,29 @@
   "setting": {
     "urlCheck": false,
     "es6": false,
+    "enhance": false,
     "postcss": false,
+    "preloadBackgroundData": false,
     "minified": false,
     "newFeature": true,
     "coverView": true,
+    "nodeModules": false,
     "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
+    "uglifyFileName": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "useMultiFrameRuntime": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
-    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -34,5 +40,26 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.16.0",
-  "condition": {}
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/user/index",
+          "pathName": "pages/user/index",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
