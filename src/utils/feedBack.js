@@ -1,4 +1,4 @@
-import Taro from "@tarojs/taro";
+import Taro from "@tarojs/taro"
 
 // 确认
 export function confirm(title = "请确认", content = "") {
@@ -8,19 +8,18 @@ export function confirm(title = "请确认", content = "") {
       content,
       success(res) {
         if (res.confirm) {
-          resolve();
+          resolve()
         } else {
-          console.log(res);
-          reject("cancel");
+          reject("cancel")
         }
       }
-    });
-  });
+    })
+  })
 }
 
 // 轻提示
 export function toast(title, duration = 1500) {
-  if (!title) return;
+  if (!title) return
   return Promise.all([
     Taro.showToast({
       title,
@@ -28,10 +27,10 @@ export function toast(title, duration = 1500) {
       duration
     }),
     new Promise(resolve => setTimeout(resolve, duration))
-  ]);
+  ])
 }
 
 export const loading = {
   show: Taro.showLoading,
   hide: Taro.hideLoading
-};
+}

@@ -64,12 +64,9 @@ export default {
     showAnswer() {
       const { nickname } = authority.get() || {};
       if (!nickname) {
-        getUserProfile(() => {
-          this.visible = true;
-        });
-      } else {
-        this.visible = true;
+        getUserProfile();
       }
+      this.visible = true;
     },
     async fetchData() {
       const { id } = router.query;
@@ -77,7 +74,6 @@ export default {
       const data = await Api.detail(id);
       data.tag = data.tag.split(",").filter(Boolean);
       this.data = data;
-      console.log(data);
     },
     async toggleLike() {
       const is_like = await Api.toggleLike(this.id);
