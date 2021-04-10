@@ -210,7 +210,7 @@ export default {
     display: flex;
     align-items: center;
     height: 78px;
-    padding-left: 40px;
+    padding-left: 10px;
     &::after {
       content: "";
       display: block;
@@ -222,23 +222,26 @@ export default {
   .btn {
     height: 78px;
     line-height: 78px;
-    margin-right: 60px;
+    padding: 0 30px;
     display: flex;
     font-size: 28px;
     font-weight: 400;
     color: #68676c;
     flex-shrink: 0;
+    cursor: pointer;
     &.active {
       color: #323038;
       font-weight: bold;
       position: relative;
       &::after {
         content: "";
-        width: 100%;
+        width: 60%;
         position: absolute;
         left: 0;
+        right: 0;
         bottom: 0;
         height: 6px;
+        margin: auto;
         background: #323038;
       }
     }

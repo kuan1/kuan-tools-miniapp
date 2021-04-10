@@ -1,42 +1,52 @@
 <template>
   <view class="user-outer page-container">
-    <view class="header">
-      <view class="avatar">
-        <open-data type="userAvatarUrl" />
+    <view class="flex1">
+      <view class="user-header">
+        <view class="avatar">
+          <open-data type="userAvatarUrl" />
+        </view>
+        <view class="name">
+          <open-data type="userNickName" />
+        </view>
       </view>
-      <view class="name">
-        <open-data type="userNickName" />
+
+      <view class="user-action">
+        <view class="user-card">
+          <view class="item" @tap="toCollect">
+            <view class="value">{{ statistics.collectTotal }}</view>
+            <view class="label">我的收藏</view>
+          </view>
+          <view class="item" @tap="toHistory">
+            <view class="value">{{ statistics.historyTotal }}</view>
+            <view class="label">阅读历史</view>
+          </view>
+        </view>
+
+        <view class="actions">
+          <view class="action" @tap="to('about')">
+            <view>关于更多</view>
+            <view class="arrow-right" />
+          </view>
+          <view class="action">
+            <view>意见反馈</view>
+            <view class="arrow-right" />
+            <button class="coverfix" open-type="contact" />
+          </view>
+        </view>
       </view>
     </view>
 
-    <view class="user-action">
-      <view class="user-card">
-        <view class="item" @tap="toCollect">
-          <view class="value">{{ statistics.collectTotal }}</view>
-          <view class="label">我的收藏</view>
-        </view>
-        <view class="item" @tap="toHistory">
-          <view class="value">{{ statistics.historyTotal }}</view>
-          <view class="label">阅读历史</view>
-        </view>
-      </view>
-
-      <view class="actions">
-        <view class="action" @tap="to('about')">
-          <view>关于更多</view>
-          <view class="arrow-right" />
-        </view>
-        <view class="action">
-          <view>意见反馈</view>
-          <view class="arrow-right" />
-          <button class="coverfix" open-type="contact" />
-        </view>
-      </view>
+    <view
+      class="user-tips"
+      @tap="copy('https://github.com/kuan1/kuan-tools-miniapp')"
+    >
+      项目github源码地址<text class="copy">(复制)</text>
     </view>
   </view>
 </template>
 
 <script>
+import taro from "@tarojs/taro";
 import { mapState } from "vuex";
 import { to } from "@/utils/router";
 import { toast } from "@/utils/feedback";
@@ -66,12 +76,22 @@ export default {
         toast("你还没有阅读~");
       }
     },
+    async copy(text) {
+      if (!text) return;
+      await taro.setClipboardData({ data: text });
+      toast(`已复制${text}`);
+    },
   },
 };
 </script>
 
 <style lang="less">
-.header {
+.user-outer {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-header {
   height: 350px;
   position: relative;
   display: flex;
@@ -178,6 +198,16 @@ export default {
     &:not(:last-child) {
       border-bottom: 2px solid #eee;
     }
+  }
+}
+
+.user-tips {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+  padding: 1em;
+  .copy {
+    color: #4e6ef2;
   }
 }
 </style>

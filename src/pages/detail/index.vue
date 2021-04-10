@@ -1,10 +1,10 @@
 <template>
   <view class="detail-container page-container">
-    <template v-if="data.id">
+    <view class="flex1" v-if="data.id">
       <view class="detail-title">{{ data.title }}</view>
       <view class="subwrap">
-        <view v-for="tag in data.tag" :key="tag" class="tags">
-          <view class="tag">{{ tag }}</view>
+        <view class="tags">
+          <view v-for="tag in data.tag" :key="tag" class="tag">{{ tag }}</view>
         </view>
         <view class="action">
           <share-icon :share="data.id" class="icon-item" />
@@ -26,13 +26,17 @@
         <view class="answer-title">
           <view class="text">答案：</view>
           <view class="feedback">
-            <text>问题反馈</text>
+            <text>问题反馈?⃝</text>
             <button class="contact-bg" open-type="contact"></button>
           </view>
         </view>
         <wemark :highlight="true" :md="data.content" />
       </view>
-    </template>
+    </view>
+    <view class="tips">
+      如果发现错误或者有更好的答案，<text class="t">欢迎反馈</text>。
+      <button class="contact-bg" open-type="contact"></button>
+    </view>
   </view>
 </template>
 
@@ -86,6 +90,8 @@ export default {
 <style lang="less">
 .detail-container {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   .detail-title {
     padding: 30px 30px 0;
     background-color: #fff;
@@ -121,16 +127,8 @@ export default {
     justify-content: space-between;
     .feedback {
       position: relative;
-      color: #666;
-      font-size: 0.8em;
-    }
-    .contact-bg {
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      color: #999;
+      font-size: 24px;
     }
   }
   .subwrap {
@@ -162,6 +160,26 @@ export default {
         transform: scale(0.9);
       }
     }
+  }
+
+  .tips {
+    width: 690px;
+    margin: 20px auto;
+    font-size: 24px;
+    color: #999;
+    position: relative;
+    text-align: center;
+    .t {
+      color: #4e6ef2;
+    }
+  }
+  .contact-bg {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

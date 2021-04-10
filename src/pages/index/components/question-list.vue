@@ -10,8 +10,8 @@
       <wemark :highlight="true" :md="item.brief" class="brief" />
 
       <view class="footer">
-        <view v-for="tag in item.tag" :key="tag" class="tags">
-          <view class="tag">{{ tag }}</view>
+        <view class="tags">
+          <view v-for="tag in item.tag" :key="tag" class="tag">{{ tag }}</view>
         </view>
         <view class="action">
           <views-icon :text="item.view_count" class="icon-item" />
