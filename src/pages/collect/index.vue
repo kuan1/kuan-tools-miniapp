@@ -40,7 +40,7 @@ export default {
       if (total <= list.length) return;
       payload.page = (payload.page || 1) + 1;
       const { list: data = [], total: t = 0 } = await Api.collectList(payload);
-      this.list = [...list, data];
+      this.list = [...list, ...data];
       this.total = t;
     },
   },
