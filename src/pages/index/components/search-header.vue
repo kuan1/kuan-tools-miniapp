@@ -74,10 +74,10 @@ export default {
   methods: {
     clear() {
       this.text = "";
-      this.left = "";
       this.toSearch();
     },
     toSearch() {
+      this.left = 0;
       this.$store.dispatch("fetchQuestion", { title: this.text });
     },
     toUser() {
