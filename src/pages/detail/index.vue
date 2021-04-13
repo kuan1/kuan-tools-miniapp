@@ -1,6 +1,6 @@
 <template>
   <view class="detail-container page-container">
-    <view class="flex1" v-if="data.id">
+    <view v-if="data.id" class="flex1">
       <view class="detail-title">{{ data.title }}</view>
       <view class="subwrap">
         <view class="tags">
@@ -26,8 +26,13 @@
         <view class="answer-title">
           <view class="text">答案：</view>
           <view class="feedback">
-            <text>问题反馈?⃝</text>
-            <button class="contact-bg" open-type="contact"></button>
+            <view>问题反馈</view>
+            <image src="./images/help.png" class="help" />
+            <button
+              class="contact-bg"
+              open-type="contact"
+              :session-from="`welcome:${data.title}\n\n答案有问题或者有更好的答案，欢迎反馈`"
+            ></button>
           </view>
         </view>
         <wemark :highlight="true" :md="data.content" />
@@ -129,6 +134,13 @@ export default {
       position: relative;
       color: #999;
       font-size: 24px;
+      display: flex;
+      align-items: center;
+    }
+    .help {
+      width: 24px;
+      height: 24px;
+      margin-left: 8px;
     }
   }
   .subwrap {

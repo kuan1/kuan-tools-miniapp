@@ -30,7 +30,11 @@
           <view class="action">
             <view>意见反馈</view>
             <view class="arrow-right" />
-            <button class="coverfix" open-type="contact" />
+            <button
+              class="coverfix"
+              open-type="contact"
+              session-from="welcome:欢迎反馈，我看到会第一时间回复"
+            />
           </view>
         </view>
       </view>
